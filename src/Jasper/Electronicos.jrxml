@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Electronicos" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7b59c901-06aa-40ae-a554-cd00a5341d32">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="Stocke" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select * from electronicos where Stock <= $P{Stocke}]]>
+	</queryString>
+	<field name="IDTIPO_VENTA" class="java.lang.Integer"/>
+	<field name="CODIGO_PRODUCTO" class="java.lang.Long"/>
+	<field name="NOMBRE" class="java.lang.String"/>
+	<field name="MARCA" class="java.lang.String"/>
+	<field name="CARACTERISTICAS" class="java.lang.String"/>
+	<field name="REGISTRO" class="java.lang.String"/>
+	<field name="STOCK" class="java.lang.Double"/>
+	<field name="PRECIO" class="java.lang.Double"/>
+	<field name="FECHA_COMPRA" class="java.sql.Date"/>
+	<field name="PRECIO_COMPRA" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="484" height="64" forecolor="#00CC99" uuid="bfa56add-c47f-4de9-acc8-34146fd7a3b0"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial Narrow" size="40" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Reporte de faltantes]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="501" y="0" width="251" height="64" uuid="3ba72e2d-0f7f-40ed-aaee-490796e79d1a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial Narrow" size="15"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="31" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="751" height="25" forecolor="#009933" uuid="32157af6-816d-45d9-9203-051b79f1fb14"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial Narrow" size="20" isBold="true" isItalic="true" isUnderline="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Electronicos]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="28" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="2" width="100" height="20" uuid="83a9fd98-6768-4f66-b5a7-445fa2d72ea4"/>
+				<text><![CDATA[Codigo del producto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="121" y="2" width="100" height="20" uuid="2d27c702-9556-4a6a-88f9-13eb0a16e727"/>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="256" y="2" width="100" height="20" uuid="c8b9102f-02c6-4d9a-b5c2-fb87eed402d5"/>
+				<text><![CDATA[Marca]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="385" y="2" width="100" height="20" uuid="78bab2a9-1d4e-4879-97c3-94f3a495dfa8"/>
+				<text><![CDATA[Caracteristicas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="523" y="2" width="100" height="20" uuid="77628fda-ffa5-4d0d-aae4-ebd0a83073f7"/>
+				<text><![CDATA[Registro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="651" y="2" width="100" height="20" uuid="365877b0-8ae2-4ce0-a5f1-bfca4da6e71a"/>
+				<text><![CDATA[Stock]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="6524b513-624b-4a6d-99a3-2aed71b77779"/>
+				<textFieldExpression><![CDATA[$F{Codigo_Producto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="121" y="0" width="100" height="20" uuid="449ae146-4e3f-4007-97a2-c9162ad43e0c"/>
+				<textFieldExpression><![CDATA[$F{Nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="256" y="0" width="100" height="20" uuid="d9b73dda-8c12-4857-9e8f-af22ae3861c8"/>
+				<textFieldExpression><![CDATA[$F{Marca}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="385" y="0" width="100" height="20" uuid="9e13b3bf-4aa2-4efa-9e29-177d3768e19f"/>
+				<textFieldExpression><![CDATA[$F{Caracteristicas}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="523" y="0" width="100" height="20" uuid="b6a8aeb1-3ae2-44d8-815d-cdb891ab755c"/>
+				<textFieldExpression><![CDATA[$F{Registro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="651" y="0" width="100" height="20" uuid="a22b9fef-9127-479a-b888-3d1d90d5a50c"/>
+				<textFieldExpression><![CDATA[$F{Stock}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="751" height="18" uuid="2b0c8100-f399-4532-b8a2-53972cfe03cd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial Narrow" size="15" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

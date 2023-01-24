@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Orden_Servicio" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="712eb61a-3f74-4298-a474-00201dbf47f0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="360"/>
+	<parameter name="idRenta" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     *
+FROM
+     rentas
+WHERE idRenta = $P{idRenta}]]>
+	</queryString>
+	<field name="idRenta" class="java.lang.Integer"/>
+	<field name="Nombre" class="java.lang.String"/>
+	<field name="Telefono" class="java.lang.String"/>
+	<field name="Direccion" class="java.lang.String"/>
+	<field name="Referencias" class="java.lang.String"/>
+	<field name="Fecha" class="java.sql.Timestamp"/>
+	<field name="Apartado" class="java.lang.Double"/>
+	<field name="Renta" class="java.lang.String"/>
+	<field name="Total" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="90" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="389" height="79" forecolor="#009933" uuid="0e353aa3-d221-4278-976f-eb3111dbebfa"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Bell MT" size="50"/>
+				</textElement>
+				<text><![CDATA[Arrendadora Cano]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="67" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="389" height="35" forecolor="#009933" uuid="b4982b7f-49f5-45bd-b7bd-d083a54f2b1d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="25" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Orden de servicio]]></text>
+			</staticText>
+			<textField evaluationTime="Report" pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="389" y="0" width="183" height="35" forecolor="#009933" uuid="45c35164-b41e-4496-8a95-6cd0af8969b5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="15" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="123" height="20" forecolor="#000000" uuid="bc241b0c-1aa2-4e51-8683-bc37c3e1cf54"/>
+				<textElement>
+					<font fontName="Bodoni MT" size="15"/>
+				</textElement>
+				<text><![CDATA[Numero de renta]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="511" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="b460ecee-5829-49e7-b001-0f7b82bd12d1"/>
+				<textElement>
+					<font fontName="Bodoni MT" size="15"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{idRenta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="136" y="37" width="220" height="20" uuid="57ae09d6-e5b6-4f17-8a7f-aac7fdf23660"/>
+				<textElement>
+					<font fontName="Berlin Sans FB" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="136" y="72" width="436" height="20" uuid="b7d1be99-5e5d-4aca-aa28-86d00759d69c"/>
+				<textElement>
+					<font fontName="Berlin Sans FB" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Direccion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="447" y="37" width="125" height="20" uuid="c58eedca-6167-4264-9ec0-108e07237f78"/>
+				<textElement>
+					<font fontName="Berlin Sans FB" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Telefono}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="393" width="220" height="20" forecolor="#990000" uuid="2a3abbfe-36c8-408b-ae64-f66295d49258"/>
+				<textElement>
+					<font fontName="Berlin Sans FB" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="136" y="109" width="436" height="20" uuid="ca3220e8-b7be-476a-b469-8b17175f07d8"/>
+				<textElement>
+					<font fontName="Berlin Sans FB" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Referencias}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="462" y="393" width="110" height="20" forecolor="#990000" uuid="b3797856-c471-4c34-895a-1d5dec916aba"/>
+				<textElement>
+					<font fontName="Berlin Sans FB" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Apartado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="136" y="143" width="436" height="203" forecolor="#003333" uuid="f1c529b9-65d1-423f-9050-5b5dc584adb5"/>
+				<textElement>
+					<font fontName="Berlin Sans FB" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Renta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="462" y="359" width="110" height="20" forecolor="#990000" uuid="69a5dac2-f8a6-4aa2-8e79-1efdc77b933a"/>
+				<textElement>
+					<font fontName="Berlin Sans FB" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Total}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="37" width="123" height="20" uuid="18862bab-ae83-43f1-9d66-ad608d4af589"/>
+				<textElement>
+					<font fontName="Bodoni MT" size="15"/>
+				</textElement>
+				<text><![CDATA[Nombre del cliente:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="371" y="37" width="64" height="20" uuid="e1876291-8cd9-4272-9756-3079061a5dc2"/>
+				<textElement>
+					<font fontName="Bodoni MT" size="15"/>
+				</textElement>
+				<text><![CDATA[Telefono:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="359" width="220" height="20" uuid="f301ea95-0210-46da-a34a-9d4e58219a16"/>
+				<textElement>
+					<font fontName="Bodoni MT" size="15"/>
+				</textElement>
+				<text><![CDATA[Fecha y hora estimada de entrega:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="371" y="393" width="76" height="20" uuid="1dd522d9-a0fa-448c-88c1-c81795ce306c"/>
+				<textElement>
+					<font fontName="Bodoni MT" size="15"/>
+				</textElement>
+				<text><![CDATA[Apartado:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="371" y="359" width="51" height="20" uuid="2655803c-7e20-45b4-9025-66f67471c28d"/>
+				<textElement>
+					<font fontName="Bodoni MT" size="15"/>
+				</textElement>
+				<text><![CDATA[Total:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="109" width="100" height="20" uuid="459f985f-dd0e-4d35-8fcf-e8b226620820"/>
+				<textElement>
+					<font fontName="Bodoni MT" size="15"/>
+				</textElement>
+				<text><![CDATA[Referencias:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="143" width="100" height="20" uuid="e4cb716f-8862-4226-b027-8e9151ccaf51"/>
+				<textElement>
+					<font fontName="Bodoni MT" size="15"/>
+				</textElement>
+				<text><![CDATA[Renta:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="72" width="100" height="20" uuid="1f4c907d-0f45-4d34-af1c-a65a3449eecb"/>
+				<textElement>
+					<font fontName="Bodoni MT" size="15"/>
+				</textElement>
+				<text><![CDATA[Direccion:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="178" y="480" width="224" height="28" uuid="1ffbe600-1279-450f-b203-6f6e584f421d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Bahnschrift" size="14"/>
+				</textElement>
+				<text><![CDATA[Nombre y firma de recibido]]></text>
+			</staticText>
+			<line>
+				<reportElement x="136" y="465" width="311" height="2" uuid="e1a3bceb-1e74-4ef1-ab7e-2e8a999ff105"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

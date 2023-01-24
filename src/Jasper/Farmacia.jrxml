@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Farmacia" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="769dc7c6-c660-490a-9ffe-81afedad94a6">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="Stocke" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select
+*
+from 
+farmacia
+where 
+Stock <= $P{Stocke}]]>
+	</queryString>
+	<field name="CODIGO_PRODUCTO" class="java.lang.Long"/>
+	<field name="NOMBRE" class="java.lang.String"/>
+	<field name="MARCA" class="java.lang.String"/>
+	<field name="CANTIDAD" class="java.lang.String"/>
+	<field name="CARACTERISTICAS" class="java.lang.String"/>
+	<field name="FECHA_CADUCIDAD" class="java.sql.Date"/>
+	<field name="FECHA_COMPRA" class="java.sql.Date"/>
+	<field name="PRECIO_COMPRA" class="java.lang.Double"/>
+	<field name="PRECIO_VENTA" class="java.lang.Double"/>
+	<field name="STOCK" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="67" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="484" height="64" forecolor="#00CC99" uuid="af5002d0-fbe6-4b99-9d01-db38a86a672c"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial Narrow" size="40" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Reporte de faltantes]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="501" y="0" width="251" height="64" uuid="567cdfdc-5f16-4b1b-9969-209cc663cb24"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial Narrow" size="15"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="29" splitType="Stretch">
+			<staticText>
+				<reportElement x="1" y="0" width="751" height="25" forecolor="#009933" uuid="dd11839e-1a98-403a-988f-cf155ccb3d91"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial Narrow" size="20" isBold="true" isItalic="true" isUnderline="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Farmacia]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="6c1e4511-73af-4c37-ba11-f8797abadbc0"/>
+				<text><![CDATA[Codigo del producto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="114" y="0" width="100" height="20" uuid="542a1662-88bc-4d83-808d-c1157ba0d213"/>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="231" y="0" width="100" height="20" uuid="64b3db4f-ef55-44ff-8079-24a3506b7a1a"/>
+				<text><![CDATA[Marca]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="347" y="0" width="100" height="20" uuid="c526b462-3094-4a99-b9a6-f83b41987c61"/>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="463" y="0" width="100" height="20" uuid="d6795263-b335-4351-9e1e-4d1fb8d824ff"/>
+				<text><![CDATA[Caracteristicas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="580" y="0" width="100" height="20" uuid="b9d7fa9b-7677-4f37-88d2-0cd525563c6c"/>
+				<text><![CDATA[Fecha de caducidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="695" y="0" width="57" height="20" uuid="f798cd6a-e999-4d3b-98e2-1c05ea918f34"/>
+				<text><![CDATA[Stock]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="1" y="0" width="100" height="20" uuid="5af113e1-91e1-4f65-87b1-58b412a706cc"/>
+				<textFieldExpression><![CDATA[$F{Codigo_Producto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="114" y="0" width="100" height="20" uuid="a8c00ac4-9f5c-42f5-b278-3095fdfd9cd2"/>
+				<textFieldExpression><![CDATA[$F{Nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="231" y="0" width="100" height="20" uuid="880110a1-a020-46ed-beea-8bcca1360c8c"/>
+				<textFieldExpression><![CDATA[$F{Marca}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="347" y="0" width="100" height="20" uuid="3c554009-5ae7-4a9a-a8b8-8e7bfdecbe2a"/>
+				<textFieldExpression><![CDATA[$F{Cantidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="463" y="0" width="100" height="20" uuid="0d077192-9c91-4c36-8fe8-84d5ee70326c"/>
+				<textFieldExpression><![CDATA[$F{Caracteristicas}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="580" y="0" width="100" height="20" uuid="e3415975-8648-4236-966e-9702478318cd"/>
+				<textFieldExpression><![CDATA[$F{Fecha_Caducidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="695" y="0" width="57" height="20" uuid="2221b268-ec63-4f8d-8014-51aadc50e7f0"/>
+				<textFieldExpression><![CDATA[$F{Stock}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="1" y="0" width="751" height="18" uuid="97178e9d-9d68-467d-bcd4-556ab1a08d47"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial Narrow" size="15" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
