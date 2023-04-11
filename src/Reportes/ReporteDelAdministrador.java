@@ -48,10 +48,12 @@ public class ReporteDelAdministrador extends javax.swing.JFrame {
         return redValue;
     }
     
-        public void Escarbar() {
+    public void Escarbar() {
         try {
-            PreparedStatement ps = con.prepareStatement("select * from regalos where Codigo_Producto=?");
+            PreparedStatement ps;
             ResultSet rs;
+
+            ps = con.prepareStatement("select * from farmacia where Codigo_Producto=?");
             ps.setString(1, NumId2);
             rs = ps.executeQuery();
             if (rs.next()) {
@@ -59,70 +61,10 @@ public class ReporteDelAdministrador extends javax.swing.JFrame {
                 Nombre2 = rs.getString("Nombre");
                 Marca2 = rs.getString("Marca");
                 Precio_Compra2 = rs.getDouble("Precio_Compra");
-                Precio_Venta2 = rs.getDouble("Precio");
+                Precio_Venta2 = rs.getDouble("Precio_Venta");
                 Stock2 = rs.getDouble("Stock");
             } else {
-                ps = con.prepareStatement("select * from electronicos where Codigo_Producto=?");
-                ps.setString(1, NumId2);
-                rs = ps.executeQuery();
-                if (rs.next()) {
-                    Codigo_Producto2 = rs.getLong("Codigo_Producto");
-                    Nombre2 = rs.getString("Nombre");
-                    Marca2 = rs.getString("Marca");
-                    Precio_Compra2 = rs.getDouble("Precio_Compra");
-                    Precio_Venta2 = rs.getDouble("Precio");
-                    Stock2 = rs.getDouble("Stock");
-                } else {
-                    ps = con.prepareStatement("select * from farmacia where Codigo_Producto=?");
-                    ps.setString(1, NumId2);
-                    rs = ps.executeQuery();
-                    if (rs.next()) {
-                        Codigo_Producto2 = rs.getLong("Codigo_Producto");
-                        Nombre2 = rs.getString("Nombre");
-                        Marca2 = rs.getString("Marca");
-                        Precio_Compra2 = rs.getDouble("Precio_Compra");
-                        Precio_Venta2 = rs.getDouble("Precio_Venta");
-                        Stock2 = rs.getDouble("Stock");
-                    } else {
-                        ps = con.prepareStatement("select * from papeleria where Codigo_Producto=?");
-                        ps.setString(1, NumId2);
-                        rs = ps.executeQuery();
-                        if (rs.next()) {
-                            Codigo_Producto2 = rs.getLong("Codigo_Producto");
-                            Nombre2 = rs.getString("Nombre");
-                            Marca2 = rs.getString("Marca");
-                            Precio_Compra2 = rs.getDouble("Precio_Compra");
-                            Precio_Venta2 = rs.getDouble("Precio");
-                            Stock2 = rs.getDouble("Stock");
-                        } else {
-                            ps = con.prepareStatement("select * from catalogo where Codigo_Producto=?");
-                            ps.setString(1, NumId2);
-                            rs = ps.executeQuery();
-                            if (rs.next()) {
-                                Codigo_Producto2 = rs.getLong("Codigo_Producto");
-                                Nombre2 = rs.getString("Nombre");
-                                Marca2 = rs.getString("Marca");
-                                Precio_Compra2 = rs.getDouble("Precio_Compra");
-                                Precio_Venta2 = rs.getDouble("Precio_Venta");
-                                Stock2 = 1;
-                            } else {
-                                ps = con.prepareStatement("select * from merceria where Codigo_Producto=?");
-                                ps.setString(1, NumId2);
-                                rs = ps.executeQuery();
-                                if (rs.next()) {
-                                    Codigo_Producto2 = rs.getLong("Codigo_Producto");
-                                    Nombre2 = rs.getString("Nombre");
-                                    Marca2 = rs.getString("Marca");
-                                    Precio_Compra2 = rs.getDouble("Precio_Compra");
-                                    Precio_Venta2 = rs.getDouble("Precio_Venta");
-                                    Stock2 = rs.getDouble("Stock");
-                                } else {
-                                    JOptionPane.showMessageDialog(null, "Producto no encontrado");
-                                }
-                            }
-                        }
-                    }
-                }
+                JOptionPane.showMessageDialog(null, "Producto no encontrado");
             }
         } catch (HeadlessException | SQLException e) {
             JOptionPane.showMessageDialog(null, e);
@@ -804,55 +746,7 @@ public class ReporteDelAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAceptar1ActionPerformed
 
     private void btnRealizarCamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRealizarCamActionPerformed
-        try {
-            NumId2 = txtCodigoCam.getText();
-            Escarbar();
-            if (Precio_Venta2 >= Precio_Venta) {
-                PreparedStatement ps;
-                ps = con.prepareStatement("update ventas set Codigo_Producto=?,"
-                        + "Nombre=?,Marca=?,Precio_Compra=?,Stock=? where idVenta=?");
-                ps.setLong(1, Codigo_Producto2);
-                ps.setString(2, Nombre2);
-                ps.setString(3, Marca2);
-                ps.setDouble(4, Precio_Compra2);
-                ps.setDouble(5, Stock2 - 1);
-                ps.setString(6, NumId);
-                int r = ps.executeUpdate();
-                if (r > 0) {
-                    if (Precio_Venta2 > Precio_Venta) {
-                        Double Dif = Precio_Venta2 - Precio_Venta;
-                        Fecha = new Date();
-                        Stock -= 1;
-                        java.sql.Date dat = new java.sql.Date(Fecha.getTime());
-                        ps = con.prepareStatement("insert into ventas(Fecha_Venta,Codigo_Producto,Nombre,Marca,"
-                                + "Precio_Compra,Precio_Venta,Vendedor,Stock)values(?,?,?,?,?,?,?,?)");
-                        ps.setDate(1, dat);
-                        ps.setLong(2, Codigo_Producto2);
-                        ps.setString(3, Nombre2);
-                        ps.setString(4, Marca2);
-                        ps.setDouble(5, Precio_Compra2);
-                        ps.setDouble(6, Dif);
-                        ps.setString(7, "Administrador");
-                        ps.setDouble(8, Stock);
-                        r = ps.executeUpdate();
-                        if (r > 0) {
-                            JOptionPane.showMessageDialog(null, "Cambio exitoso");
-                            FrameCambio.dispose();
-                            txtCodigoCam.setText(null);
-                        } else {
-                            JOptionPane.showMessageDialog(null, "Ourrio un problema al hacer el cambio 1");
-                        }
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(null, "Ourrio un problema al hacer el cambio 2");
-                }
-            } else {
-                JOptionPane.showMessageDialog(null, "No se puede cambiar este producto ya que su precio es menor");
-            }
-
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
+        System.out.println("Hola Mundo");
     }//GEN-LAST:event_btnRealizarCamActionPerformed
 
     public static void main(String args[]) {
